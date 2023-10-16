@@ -17,3 +17,12 @@ transform_metadata_to_df <- function(metadata){
   
   return(df)
 }
+
+# Function for converting dates to ISO with an offset
+to_iso8601 <- function(datetime, offset){
+  return_date <- iso8601( # Converting into iso format
+    datetime + days(offset) # Adding the offset of days
+    )
+  return_date <- paste0(return_date,"Z") # Appending Z at the end of datetime
+  return(return_date)
+}
