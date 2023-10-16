@@ -27,13 +27,14 @@ to_iso8601 <- function(datetime, offset){
   return(return_date)
 }
 
+# Function for transforming the json output
 transform_volumes <- function(jsonOutput){
   df <- jsonOutput %>%
     pluck("trafficData", "volume", "byHour", "edges") %>%
     map_df(function(x) {
       data.frame(
-        from = as_datetime(x$node$from),
-        to = as_datetime(x$node$to),
+        from = as_datetime(x$node$from), # Transforming to datetime
+        to = as_datetime(x$node$to), # Transforming to datetime
         volume = x$node$total$volumeNumbers$volume
       )
     })
