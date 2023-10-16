@@ -62,7 +62,9 @@ stations_metadata_df %>%
   transform_volumes() %>% 
   ggplot(aes(x=from, y=volume)) + 
   geom_line() + 
-  theme_classic()
+  theme_classic() +
+  ylab("Volume of cars") +
+  xlab("Time (hourly reports)")
 
 
 
