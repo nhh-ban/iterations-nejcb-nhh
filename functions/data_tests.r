@@ -5,6 +5,7 @@
 # All tests are packed in a function test_stations_metadata that apples
 # all the aforementioned tests
 
+# Tests if the name of the columns are within expected values 
 test_stations_metadata_colnames <-
   function(df) {
     
@@ -17,6 +18,7 @@ test_stations_metadata_colnames <-
     }
   }
 
+# Tests if the number of rows falls within [5000 - 10000]
 test_stations_metadata_nrows <-
   function(df) {
     
@@ -32,6 +34,7 @@ test_stations_metadata_nrows <-
     }
   }
 
+# Tests if the data types of the row are as expected
 test_stations_metadata_coltypes <-
   function(df) {
     expected_coltypes <-
@@ -44,7 +47,8 @@ test_stations_metadata_coltypes <-
       print("FAIL: Columns do not have the correct specification")
     }
   }
-  
+
+# Tests the number of missing values and if those do not exceed 200   
 test_stations_metadata_nmissing <-
   function(df) {
     max_miss_vals <- 200
@@ -56,6 +60,7 @@ test_stations_metadata_nmissing <-
     }
   }
 
+# Tests if the "latestData" column uses the UTC timezone
 test_stations_metadata_latestdata_timezone <-
   function(df) {
     
@@ -66,7 +71,7 @@ test_stations_metadata_latestdata_timezone <-
     }
   }
 
-
+# Calls all previously defined functions within a single function to be called from the main file
 test_stations_metadata <- 
   function(df){
     test_stations_metadata_colnames(df)
