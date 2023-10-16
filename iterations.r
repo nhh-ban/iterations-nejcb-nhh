@@ -52,7 +52,8 @@ source("gql-queries/vol_qry.r")
 
 stations_metadata_df %>% 
   filter(latestData > Sys.Date() - days(7)) %>% 
-  sample_n(1) %$% 
+  sample_n(1) -> sample # storing the randomly select row into a variable
+sample %$% 
   vol_qry(
     id = id,
     from = to_iso8601(latestData, -4),
@@ -63,8 +64,10 @@ stations_metadata_df %>%
   ggplot(aes(x=from, y=volume)) + 
   geom_line() + 
   theme_classic() +
+  # Adding graph legends
   ylab("Volume of cars") +
-  xlab("Time (hourly reports)")
+  xlab("Time (hourly reports)") +
+  ggtitle(paste("Hourly volume of cars for traffic station", sample$name))
 
 
 
